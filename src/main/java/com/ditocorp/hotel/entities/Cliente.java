@@ -1,22 +1,23 @@
 package com.ditocorp.hotel.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-
-
 
 @Entity
 @Table(name = "tb_cliente")
 public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codCliente;
@@ -24,6 +25,9 @@ public class Cliente implements Serializable {
 	private String telefoneCliente;
 	private String nomeCliente;
 	private String responsavel;
+
+	@OneToMany(mappedBy = "cliente")
+	private List<Reserva> reservas = new ArrayList<>();
 
 	public Cliente() {
 	}

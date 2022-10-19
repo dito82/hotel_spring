@@ -17,7 +17,7 @@ import com.ditocorp.hotel.services.ClienteService;
 public class ClienteResource {
 
 	@Autowired
-	public ClienteService service;
+	private ClienteService service;
 
 	@GetMapping
 	public ResponseEntity<List<Cliente>> findAll() {
