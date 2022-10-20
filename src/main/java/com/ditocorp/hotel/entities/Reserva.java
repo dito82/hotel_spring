@@ -68,6 +68,14 @@ public class Reserva implements Serializable {
 		return Objects.hash(codCliente);
 	}
 
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
