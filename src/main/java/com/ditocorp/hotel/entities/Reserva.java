@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+import com.ditocorp.hotel.entities.enums.ReservaStatus;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +26,8 @@ public class Reserva implements Serializable {
 	private String numReserva;
 	private Instant dataReserva;
 
+	private Integer reservaStatus;
+
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
@@ -31,12 +35,14 @@ public class Reserva implements Serializable {
 	public Reserva() {
 	}
 
-	public Reserva(Long codCliente, String numReserva, Instant dataReserva, Cliente cliente) {
+	public Reserva(Long codCliente, String numReserva, Instant dataReserva, Cliente cliente,
+			ReservaStatus reservaStatus) {
 		super();
 		this.codCliente = codCliente;
 		this.numReserva = numReserva;
 		this.dataReserva = dataReserva;
 		this.cliente = cliente;
+		setReservaStatus(reservaStatus);
 	}
 
 	public Long getCodCliente() {
@@ -74,6 +80,16 @@ public class Reserva implements Serializable {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public ReservaStatus getReservaStatus() {
+		return ReservaStatus.valueOf(reservaStatus);
+	}
+
+	public void setReservaStatus(ReservaStatus reservaStatus) {
+		if (reservaStatus != null) {
+			this.reservaStatus = reservaStatus.getCode();
+		}
 	}
 
 	@Override
